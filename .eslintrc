@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "airbnb",
+    "prettier"
+  ],
+  "plugins": ["react", "react-hooks", "jsx-a11y"],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": ["error", "ignorePackages", {"js": "never", "jsx": "never"}],
+    "jsx-a11y/anchor-is-valid": "off"
+  }
+}
