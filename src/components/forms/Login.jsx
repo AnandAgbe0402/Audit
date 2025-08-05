@@ -1,20 +1,48 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginStart, loginSuccess, loginFailure, clearError } from '@store/slices/authSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.auth);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    // Example validation
+    dispatch(clearError());
+    
+    // Validation
     if (!email || !password) {
-      setError('Email and password are required.');
+      dispatch(loginFailure('Email and password are required.'));
       return;
     }
-    // TODO: Add real authentication logic here
-    alert(`Logged in as ${email}`);
+
+    dispatch(loginStart());
+
+    try {
+      // TODO: Replace with real API call
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock successful login
+      if (email === 'admin@tvs.com' && password === 'admin123') {
+        const userData = {
+          id: 1,
+          email: email,
+          name: 'Anand Sharma',
+          role: 'Admin'
+        };
+        dispatch(loginSuccess(userData));
+        navigate('/dashboard');
+      } else {
+        dispatch(loginFailure('Invalid email or password'));
+      }
+    } catch (err) {
+      dispatch(loginFailure('Login failed. Please try again.'));
+    }
   };
 
   return (

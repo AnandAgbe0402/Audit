@@ -2,4 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global styles to prevent horizontal scrollbar */
+@layer base {
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
 /* You can add your custom styles below */
