@@ -85,9 +85,9 @@ const AuditsTable = () => {
           {/* Filter By Status */}
           <span className="text-gray-700 text-sm font-medium whitespace-nowrap">Filter By Status</span>
           
-          {/* Status Dropdown - Responsive */}
+          {/* Status Dropdown - Smaller size */}
           <select 
-            className="border border-gray-300 rounded-md px-2 py-1 text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-full sm:w-auto min-w-[80px]"
+            className="border border-gray-300 rounded-md px-2 py-1 text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-16"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
@@ -99,17 +99,13 @@ const AuditsTable = () => {
             <option value="Auto-submitted">Auto-submitted</option>
           </select>
           
-          {/* Reset Filter */}
-          {statusFilter !== 'all' && (
-            <button 
-              onClick={resetFilter}
-              className="flex items-center gap-1 text-red-500 text-sm font-medium hover:text-red-600 transition-colors"
-            >
-              <X className="w-4 h-4" />
-              <span className="hidden sm:inline">Reset Filter</span>
-              <span className="sm:hidden">Reset</span>
-            </button>
-          )}
+          {/* Reset Filter - Image style */}
+          <button 
+            onClick={resetFilter}
+            className="flex items-center gap-1 text-red-500 text-xs font-medium hover:text-red-600 transition-colors px-2 py-1 border border-red-300 rounded bg-red-50"
+          >
+            <span>🔄 Reset Filter</span>
+          </button>
         </div>
         
         {/* Center - QLQD_Sales Badge - Hidden on mobile */}
@@ -121,15 +117,6 @@ const AuditsTable = () => {
         
         {/* Right side actions */}
         <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
-          {/* Reset All Filters */}
-          <button 
-            onClick={resetFilter}
-            className="flex items-center gap-1 text-gray-500 text-xs font-medium hover:text-gray-700 transition-colors px-2 py-1 border border-gray-300 rounded-md"
-          >
-            <X className="w-3 h-3" />
-            Reset
-          </button>
-          
           {/* Excel Export */}
           <div className="bg-green-100 p-2 rounded-md cursor-pointer hover:bg-green-200 transition-colors">
             <FileText className="w-5 h-5 text-green-600" />

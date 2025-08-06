@@ -85,9 +85,9 @@ const ReportsAuditsTable = () => {
           {/* Filter By Status */}
           <span className="text-gray-700 text-sm font-medium">Filter By Status</span>
           
-          {/* Status Dropdown */}
+          {/* Status Dropdown - Smaller size */}
           <select 
-            className="border border-gray-300 rounded px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[100px]"
+            className="border border-gray-300 rounded px-2 py-1 text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-16"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
@@ -99,15 +99,13 @@ const ReportsAuditsTable = () => {
             <option value="Auto-submitted">Auto-submitted</option>
           </select>
           
-          {/* Reset Filter */}
-          {statusFilter !== 'all' && (
-            <button 
-              onClick={resetFilter}
-              className="flex items-center gap-1 text-red-500 text-sm font-medium hover:text-red-600 transition-colors"
-            >
-              <span>Reset filter</span>
-            </button>
-          )}
+          {/* Reset Filter - Image style */}
+          <button 
+            onClick={resetFilter}
+            className="flex items-center gap-1 text-red-500 text-xs font-medium hover:text-red-600 transition-colors px-2 py-1 border border-red-300 rounded bg-red-50"
+          >
+            <span>🔄 Reset Filter</span>
+          </button>
         </div>
         
         {/* Center - Reports_Data Badge */}
@@ -119,15 +117,6 @@ const ReportsAuditsTable = () => {
         
         {/* Right side actions */}
         <div className="flex items-center gap-3">
-          {/* Reset All Filters */}
-          <button 
-            onClick={resetFilter}
-            className="flex items-center gap-1 text-gray-500 text-xs font-medium hover:text-gray-700 transition-colors px-2 py-1 border border-gray-300 rounded-md"
-          >
-            <X className="w-3 h-3" />
-            Reset
-          </button>
-          
           {/* Excel Export */}
           <div className="bg-green-100 p-2 rounded-md cursor-pointer hover:bg-green-200 transition-colors">
             <FileText className="w-5 h-5 text-green-600" />

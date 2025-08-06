@@ -141,7 +141,7 @@ const Dashboard = () => {
         {/* Main dashboard area - Responsive layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 xl:grid-cols-12 gap-4 lg:gap-6 mt-6">
           {/* Main status cards - responsive columns */}
-          <div className="lg:col-span-12 xl:col-span-9">
+          <div className="lg:col-span-12 xl:col-span-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
               <div className="flex flex-col items-center">
                 <span className="text-sm lg:text-lg font-semibold text-gray-800 mb-2 lg:mb-3">Auditor Status</span>
@@ -158,9 +158,9 @@ const Dashboard = () => {
             </div>
           </div>
           {/* Metric cards - responsive positioning */}
-          <div className="lg:col-span-12 xl:col-span-3">
+          <div className="lg:col-span-12 xl:col-span-2">
             <div className="grid grid-cols-3 lg:grid-cols-3 xl:grid-cols-1 gap-3 lg:gap-4 xl:justify-end xl:items-end h-full">
-              <div className="w-full">
+              <div className="w-full max-w-[160px] xl:max-w-none">
                 <MetricCard
                   title="Total Users"
                   value={metrics.totalUsers}
@@ -169,7 +169,7 @@ const Dashboard = () => {
                   textColor="text-white"
                 />
               </div>
-              <div className="w-full">
+              <div className="w-full max-w-[160px] xl:max-w-none">
                 <MetricCard
                   title="Total Reviewers"
                   value={metrics.totalReviewers}
@@ -178,7 +178,7 @@ const Dashboard = () => {
                   textColor="text-white"
                 />
               </div>
-              <div className="w-full">
+              <div className="w-full max-w-[160px] xl:max-w-none">
                 <MetricCard
                   title="Total Auditor"
                   value={metrics.totalAuditors}

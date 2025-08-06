@@ -102,12 +102,23 @@ const AuditorStatusChart = () => {
       <div className="relative flex-none mx-auto w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
         <svg width="100%" height="100%" viewBox="0 0 320 320" className="absolute inset-0">
           {pieSegments.map((segment, index) => (
-            <path
-              key={index}
-              d={createPiePath(160, 160, segment.outerRadius, segment.startAngle, segment.endAngle, segment.innerRadius)}
-              fill={segment.color}
-              className="transition-all duration-500 ease-in-out hover:opacity-80"
-            />
+            <g key={index}>
+              <path
+                d={createPiePath(160, 160, segment.outerRadius, segment.startAngle, segment.endAngle, segment.innerRadius)}
+                fill={segment.color}
+                className="transition-all duration-500 ease-in-out hover:opacity-80"
+              />
+              {/* Add percentage text */}
+              <text
+                x={160 + (segment.outerRadius - 20) * Math.cos((segment.startAngle + 45 - 90) * Math.PI / 180)}
+                y={160 + (segment.outerRadius - 20) * Math.sin((segment.startAngle + 45 - 90) * Math.PI / 180)}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="text-sm font-bold fill-white"
+              >
+                {segment.percentage}%
+              </text>
+            </g>
           ))}
           {/* Inner white circle */}
           <circle cx="160" cy="160" r="55" fill="#FFFFFF" />
