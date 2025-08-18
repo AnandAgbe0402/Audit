@@ -10,7 +10,7 @@ const ReportsAuditorStatusChart = () => {
       label: 'Approved', 
       value: auditorStatus.approved, 
       color: '#16DBCC', 
-      percentage: 60, // Green - 60% for reports auditor
+      percentage: 60,
       baseRadius: 55,
       maxRadius: 120
     },
@@ -18,7 +18,7 @@ const ReportsAuditorStatusChart = () => {
       label: 'Approval Pending', 
       value: auditorStatus.approvalPending, 
       color: '#FF82AC', 
-      percentage: 25, // Pink - 25% for reports auditor
+      percentage: 25,
       baseRadius: 55,
       maxRadius: 120
     },
@@ -26,7 +26,7 @@ const ReportsAuditorStatusChart = () => {
       label: 'Auto Submitted', 
       value: auditorStatus.autoSubmitted, 
       color: '#4C78FF', 
-      percentage: 45, // Blue - 45% for reports auditor
+      percentage: 45,
       baseRadius: 55,
       maxRadius: 120
     },
@@ -34,7 +34,7 @@ const ReportsAuditorStatusChart = () => {
       label: 'Approval In Progress', 
       value: auditorStatus.approvalInProgress, 
       color: '#FFBB38', 
-      percentage: 30, // Orange - 30% for reports auditor
+      percentage: 30,
       baseRadius: 55,
       maxRadius: 120
     },
@@ -42,11 +42,9 @@ const ReportsAuditorStatusChart = () => {
 
   // Calculate segments with vertical growth (radius-wise)
   const pieSegments = chartData.map((item, index) => {
-    // Each segment gets 90 degrees (quarter circle)
-    const startAngle = index * 90; // 0, 90, 180, 270 degrees
+    const startAngle = index * 90;
     const endAngle = startAngle + 90;
     
-    // Calculate outer radius based on percentage (vertical growth)
     const radiusRange = item.maxRadius - item.baseRadius;
     const outerRadius = item.baseRadius + (item.percentage / 100) * radiusRange;
     
@@ -60,7 +58,6 @@ const ReportsAuditorStatusChart = () => {
     };
   });
 
-  // Function to create SVG path for pie segment
   const createPiePath = (centerX, centerY, radius, startAngle, endAngle, innerRadius = 0) => {
     const start = polarToCartesian(centerX, centerY, radius, endAngle);
     const end = polarToCartesian(centerX, centerY, radius, startAngle);
@@ -96,10 +93,13 @@ const ReportsAuditorStatusChart = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg flex flex-col justify-between items-center p-5 w-full max-w-sm mx-auto" style={{ minHeight: '400px' }}>
+    <div className="bg-white rounded-lg shadow-lg p-3 sm:p-4 lg:p-5 xl:p-6 w-full h-full min-h-[200px] sm:min-h-[220px] lg:min-h-[240px] flex flex-col justify-between items-center">
+      <h3 className="text-gray-800 font-medium text-sm sm:text-base lg:text-lg self-start mb-3 sm:mb-4 w-full">
+        Auditor Status
+      </h3>
       
       {/* Pie Chart */}
-      <div className="relative flex-none mx-auto w-64 h-64">
+      <div className="relative flex-none mx-auto w-56 h-56 sm:w-64 sm:h-64">
         <svg width="100%" height="100%" viewBox="0 0 320 320" className="absolute inset-0">
           {pieSegments.map((segment, index) => (
             <path
@@ -109,19 +109,18 @@ const ReportsAuditorStatusChart = () => {
               className="transition-all duration-500 ease-in-out hover:opacity-80"
             />
           ))}
-          {/* Inner white circle */}
           <circle cx="160" cy="160" r="55" fill="#FFFFFF" />
         </svg>
       </div>
 
       {/* Legend */}
-      <div className="grid grid-cols-2 gap-3 w-full mt-4">
-        {chartData.map((item, idx) => (
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full mt-2 sm:mt-4">
+        {chartData.map((item) => (
           <div key={item.label} className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded flex items-center justify-center text-sm font-bold text-white" style={{ background: item.color }}>
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded flex items-center justify-center text-xs sm:text-sm font-bold text-white" style={{ background: item.color }}>
               {item.value}
             </div>
-            <span className="text-sm text-gray-600 leading-tight">{item.label}</span>
+            <span className="text-xs sm:text-sm text-gray-600 leading-tight">{item.label}</span>
           </div>
         ))}
       </div>
