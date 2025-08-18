@@ -1,12 +1,44 @@
-# React + Vite
+# Revolt Motors Voice Assistant (Gemini Live)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Server-to-server bridge using Node.js/Express + ws, with a simple React UI at `/voice`.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Create a `.env` file in project root:
 
-## Expanding the ESLint configuration
+```
+GOOGLE_API_KEY=YOUR_KEY_HERE
+# or GEMINI_API_KEY=YOUR_KEY_HERE
+GEMINI_MODEL=gemini-2.0-flash-live-001
+# Final submission model (switch when recording demo):
+# GEMINI_MODEL=gemini-2.5-flash-preview-native-audio-dialog
+SYSTEM_INSTRUCTIONS=You are Rev, the Revolt Motors assistant. Only discuss Revolt Motors products, pricing, service, test rides, dealership locations, financing, and company policies. Politely refuse unrelated topics.
+SPOKEN_LANGUAGE=en-IN
+VOICE=Puck
+PORT=3001
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Install deps:
+
+```
+npm install
+```
+
+3. Run frontend and server concurrently:
+
+```
+npm run dev:all
+```
+
+4. Open the app in the browser (Vite default: `http://localhost:5173/voice`).
+
+## Usage
+
+- Click Start to stream mic audio (webm/opus) to the server bridge.
+- Click Commit Turn or rely on server VAD to trigger a response.
+- Click Interrupt to barge-in; the server sends `response.cancel` upstream.
+
+## Notes
+
+- For rate limits, use `gemini-2.0-flash-live-001` during development.
+- For final submission, switch to `gemini-2.5-flash-preview-native-audio-dialog`. 
