@@ -14,40 +14,42 @@ const ReportsChecksheetStatus = () => {
   const total = checksheetStatus.reviewed + checksheetStatus.completed + checksheetStatus.pending + checksheetStatus.alloted;
 
   return (
-    <div className="bg-white rounded-lg shadow-lg flex flex-col justify-between items-center p-5 w-full max-w-sm mx-auto" style={{ minHeight: '400px' }}>
-      {/* Chart Rings */}
-      <div className="relative w-56 h-56 mb-6">
-        {/* Outer Ring (Green) */}
-        <div className="absolute w-full h-full">
-          <div className="absolute w-full h-full rounded-full border-[20px] border-[#F6F6F6]" />
-          <div className="absolute w-full h-full rounded-full border-[20px] border-transparent border-t-[#0BB783] border-r-[#0BB783]" style={{ transform: 'rotate(-90deg)' }} />
-        </div>
-        {/* Middle Ring (Yellow) */}
-        <div className="absolute w-40 h-40 left-8 top-8">
-          <div className="absolute w-full h-full rounded-full border-[16px] border-[#F6F6F6]" />
-          <div className="absolute w-full h-full rounded-full border-[16px] border-transparent border-t-[#FFC107]" style={{ transform: 'rotate(-90deg)' }} />
-        </div>
-        {/* Inner Ring (Red) */}
-        <div className="absolute w-24 h-24 left-16 top-16">
-          <div className="absolute w-full h-full rounded-full border-[12px] border-[#F6F6F6]" />
-          <div className="absolute w-full h-full rounded-full border-[12px] border-transparent border-t-[#E1505F]" style={{ transform: 'rotate(-90deg)' }} />
-        </div>
-        {/* Center Text */}
-        <div className="absolute flex flex-col items-center justify-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="text-gray-500 text-lg">Total</div>
-          <div className="text-blue-500 text-2xl font-bold">{total}</div>
-        </div>
-      </div>
-      {/* Legend fixed at bottom */}
-      <div className="grid grid-cols-2 gap-3 w-full mt-auto">
-        {LEGEND.map((item, idx) => (
-          <div key={item.label} className="flex items-center gap-2">
-            <div className={`w-7 h-7 rounded flex items-center justify-center ${item.color} text-sm font-bold ${item.text}`}>
-              {item.value}
+    <div className="bg-white rounded-lg shadow-lg p-3 sm:p-4 lg:p-5 xl:p-6 w-full h-full min-h-[180px] sm:min-h-[200px] lg:min-h-[220px]">
+      <h3 className="text-gray-800 font-medium text-sm sm:text-base lg:text-lg self-start mb-3 sm:mb-4">
+        Checksheet Status
+      </h3>
+      
+      {/* Status indicators - Better responsive layout */}
+      <div className="flex flex-col gap-2 sm:gap-3 items-center w-full mt-2 sm:mt-3 lg:mt-4">
+        {/* First row - Review Pending and Review in Progress */}
+        <div className="flex flex-col xl:flex-row justify-center gap-3 sm:gap-4 lg:gap-6 w-full">
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <div className="px-2 sm:px-3 h-5 sm:h-6 rounded-full flex items-center justify-center text-white text-xs sm:text-sm font-bold bg-red-500 flex-shrink-0 min-w-[2rem] sm:min-w-[2.5rem]">
+              {checksheetStatus.reviewPending}
             </div>
-            <span className="text-sm text-gray-600 leading-tight">{item.label}</span>
+            <span className="text-xs sm:text-sm text-gray-600 text-center xl:whitespace-nowrap">
+              Review Pending
+            </span>
           </div>
-        ))}
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <div className="px-2 sm:px-3 h-5 sm:h-6 rounded-full flex items-center justify-center text-black text-xs sm:text-sm font-bold bg-yellow-400 flex-shrink-0 min-w-[2rem] sm:min-w-[2.5rem]">
+              {checksheetStatus.reviewInProgress}
+            </div>
+            <span className="text-xs sm:text-sm text-gray-600 text-center xl:whitespace-nowrap">
+              Review In Progress
+            </span>
+          </div>
+        </div>
+        
+        {/* Second row - Reviewed (centered) */}
+        <div className="flex items-center justify-center gap-2 sm:gap-3">
+          <div className="px-2 sm:px-3 h-5 sm:h-6 rounded-full flex items-center justify-center text-white text-xs sm:text-sm font-bold bg-green-500 flex-shrink-0 min-w-[2rem] sm:min-w-[2.5rem]">
+            {checksheetStatus.reviewed}
+          </div>
+          <span className="text-xs sm:text-sm text-gray-600 text-center">
+            Reviewed
+          </span>
+        </div>
       </div>
     </div>
   );
