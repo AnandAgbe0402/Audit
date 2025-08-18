@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Global styles to prevent horizontal scrollbar */
 @layer base {
   html, body {
